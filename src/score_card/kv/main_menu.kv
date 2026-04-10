@@ -1,0 +1,63 @@
+<MenuScreen>:
+    MDBoxLayout:
+        orientation: "vertical"
+        padding: dp(20)
+        spacing: dp(16)
+        md_bg_color: self.theme_cls.bg_color
+
+        # Top spacing to push content up
+        MDLabel:
+            size_hint_y: None
+            height: dp(20)
+
+        MDLabel:
+            text: "Score Card"
+            font_style: "Headline"
+            role: "large"
+            halign: "center"
+            size_hint_y: None
+            height: dp(80)
+            theme_text_color: "Primary"
+
+        # Paler / softer buttons
+        MDButton:
+            style: "tonal"          # ← much paler on dark theme
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+            height: dp(52)
+            on_release: root.manager.current = "new_event"
+
+            MDButtonText:
+                text: "New Event"
+                theme_text_color: "Primary"
+                color: 1, 1, 1, 1
+
+        MDButton:
+            style: "tonal"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+            height: dp(52)
+            on_release: root.manager.current = "event"
+
+            MDButtonText:
+                text: "Resume Event"
+                theme_text_color: "Primary"
+                color: 1, 1, 1, 1
+
+
+        MDButton:
+            style: "tonal"
+            size_hint_x: 0.9
+            pos_hint: {"center_x": 0.5}
+            height: dp(52)
+            on_release: root.manager.current = "event"
+
+            MDButtonText:
+                text: "List Events"
+                theme_text_color: "Primary"
+                color: 1, 1, 1, 1
+
+
+        # Pushes everything to the top
+        Widget:
+            size_hint_y: 1

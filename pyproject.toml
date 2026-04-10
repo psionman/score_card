@@ -5,6 +5,7 @@ description = "Score card for bridge"
 readme = "README.md"
 requires-python = ">=3.13"
 dependencies = [
+    "kivymd",
     "psiutils>=0.2.33",
 ]
 
@@ -20,3 +21,6 @@ build-backend = "hatchling.build"
 
 [tool.hatch.build.targets.wheel]
 packages = ["src/score_card"]
+
+[tool.uv.sources]
+kivymd = { git = "https://github.com/kivymd/KivyMD.git" }

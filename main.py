@@ -1,6 +1,7 @@
-def main():
-    print("Hello from score-card!")
+# main.py (at project root)
+import sys
+import os
+sys.path.insert(0, os.path.join(os.path.dirname(__file__), "src", "score_card"))
 
-
-if __name__ == "__main__":
-    main()
+from main import ScoreCardApp
+ScoreCardApp().run()
