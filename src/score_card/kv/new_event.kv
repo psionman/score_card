@@ -6,13 +6,8 @@
         md_bg_color: self.theme_cls.bg_color
 
         MDLabel:
-            size_hint_y: None
-            height: dp(10)
-
-        MDLabel:
             text: "New Event"
-            font_style: "Headline"
-            role: "large"
+            font_style: "H4"
             halign: "center"
             size_hint_y: None
             height: dp(70)
@@ -25,17 +20,12 @@
             height: dp(48)
 
         MDButton:
-            style: "tonal"
+            id: date_button
+            text: root.selected_date if root.selected_date else "Select Date"
             size_hint_x: 1
             size_hint_y: None
             height: dp(52)
             on_release: root.show_date_picker()
-
-            MDButtonText:
-                text: "Select Date"
-                theme_text_color: "Primary"
-                color: 1, 1, 1, 1
-
 
         MDTextField:
             id: location_input
@@ -58,31 +48,19 @@
             theme_text_color: "Custom"
             text_color: 0.3, 0.9, 0.3, 1
 
-        Widget:   # Spacer
+        Widget:
             size_hint_y: 1
 
-        # Bottom action buttons
         MDButton:
-            style: "elevated"
+            text: "Save Event"
             size_hint_x: 1
             size_hint_y: None
             height: dp(54)
             on_release: root.save_event()
 
-            MDButtonText:
-                text: "Save Event"
-                theme_text_color: "Primary"
-                color: 1, 1, 1, 1
-
-
         MDButton:
-            style: "outlined"
+            text: "Cancel"
             size_hint_x: 1
             size_hint_y: None
             height: dp(54)
             on_release: root.go_back()
-
-            MDButtonText:
-                text: "Cancel"
-                theme_text_color: "Primary"
-                color: 1, 1, 1, 1

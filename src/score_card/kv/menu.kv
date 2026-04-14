@@ -1,0 +1,41 @@
+
+<MenuScreen>:
+    canvas.before:
+        Color:
+            rgba: BG
+        Rectangle:
+            pos: self.pos
+            size: self.size
+
+    BoxLayout:
+        orientation: "vertical"
+        padding: dp(40)
+        spacing: dp(16)
+
+        Widget:
+            size_hint_y: 0.2
+
+        ScTitle:
+            text: "Score Card"
+            font_size: dp(36)
+
+        ScLabel:
+            text: "Bridge Scorer"
+            halign: "center"
+            color: TEXT_HINT
+            size_hint_y: None
+            height: dp(30)
+
+        Widget:
+            size_hint_y: 0.1
+
+        ScButton:
+            text: "New Event"
+            on_release: root.manager.current = "event_form"
+
+        ScButton:
+            text: "List Events"
+            on_release: root.manager.current = "event_list"
+
+        Widget:
+            size_hint_y: 1

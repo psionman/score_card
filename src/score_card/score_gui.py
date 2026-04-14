@@ -1,7 +1,11 @@
+# score_gui.py
+
 import os
+
 if os.environ.get("KIVY_BUILD") != "android":
     # Only apply on desktop — ignored on real device
     from kivy.config import Config
+
     Config.set("graphics", "width", "360")
     Config.set("graphics", "height", "780")
     Config.set("graphics", "dpi", "416")
@@ -13,41 +17,48 @@ from kivy.lang import Builder
 from screens.new_event import NewEventScreen
 
 
+HERE = os.path.dirname(os.path.abspath(__file__))
+
 KV_FILES = [
-    "kv/main_menu.kv",
-    "kv/new_event.kv",
-    # "kv/list_events.kv",
-    # "kv/event.kv",
+    os.path.join(HERE, "kv", "main_menu.kv"),
+    os.path.join(HERE, "kv", "new_event.kv"),
 ]
+
 
 class MenuScreen(Screen):
     pass
 
+
 class EventScreen(Screen):
     pass
+
 
 class ScoreCardApp(MDApp):
     icon = "src/score_card/images/favicon.png"
 
     def build(self):
-        self.theme_cls.theme_style = "Dark"          # Try "Dark" if you prefer
+        self.theme_cls.theme_style = "Dark"  # Try "Dark" if you prefer
         self.theme_cls.primary_palette = "Blue"
         self.theme_cls.primary_hue = "500"
         self.theme_cls.accent_palette = "Amber"
-        self.theme_cls.material_style = "Rounded"     # or "Sharp"
-
+        self.theme_cls.material_style = "Rounded"  # or "Sharp"
 
         # Force background (very important in 2.0)
         # self.theme_cls.bg_color = [0.98, 0.98, 0.98, 1]
         # self.theme_cls.bg_color = [0, 0, 0, 1]
         self.theme_cls.bg_color = [0.07, 0.07, 0.07, 1]
 
-        self.theme_cls.theme_text_color = "Primary"   # helps globally
-        self.theme_cls.text_color = [0.95, 0.95, 0.98, 1]   # almost white
+        self.theme_cls.theme_text_color = "Primary"  # helps globally
+        self.theme_cls.text_color = [0.95, 0.95, 0.98, 1]  # almost white
 
-        for kv in KV_FILES:
-            Builder.load_file(kv)
-        sm = ScreenManager()
-        sm.add_widget(MenuScreen(name="menu"))
-        sm.add_widget(NewEventScreen(name="new_event"))
-        return sm
+        try:
+            for kv in KV_FILES:
+                Builder.load_file(kv)
+            sm = ScreenManager()
+            sm.add_widget(MenuScreen(name="menu"))
+            sm.add_widget(NewEventScreen(name="new_event"))
+            return sm
+        except Exception as e:
+            from kivy.uix.label import Label
+
+            return Label(text=str(e))
